@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cw4ea72ip6at3"]
+
+[ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="1_bfjxd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2li8p"]
+
+[node name="RaceLevel" type="Node2D" unique_id=918764093]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=472678254]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1242745735]
+shape = SubResource("WorldBoundaryShape2D_2li8p")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=928665251]
+
+[node name="Horse" parent="." unique_id=117766856 instance=ExtResource("1_bfjxd")]
+position = Vector2(-48, -101)
+
+[node name="Horse2" parent="." unique_id=1114416760 instance=ExtResource("1_bfjxd")]
+position = Vector2(-23, -258)
