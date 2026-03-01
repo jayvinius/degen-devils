@@ -32,6 +32,7 @@ position = Vector2(-490, -101)
 
 [node name="Horse2" parent="Horses" unique_id=1114416760 instance=ExtResource("1_bfjxd")]
 position = Vector2(-489, -258)
+max_speed = 600.0
 
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
