@@ -6,8 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6tiw"]
 size = Vector2(129, 128)
 
-[node name="Horse" type="RigidBody2D" unique_id=1490280196]
-collision_layer = 2
+[node name="Horse" type="CharacterBody2D" unique_id=1014873418]
 script = ExtResource("1_g6tiw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1469360933]
