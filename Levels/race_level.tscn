@@ -34,5 +34,12 @@ position = Vector2(-490, -101)
 position = Vector2(-489, -258)
 max_speed = 600.0
 
+[node name="ContinueButton" type="Button" parent="." unique_id=298284935]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Continue"
+
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

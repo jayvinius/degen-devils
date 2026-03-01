@@ -54,16 +54,14 @@ func run(_delta: float) -> void:
 	# 	velocity += get_gravity() * delta
 
 func _on_lower_bet_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("player")
 	if bet_amount >= 0:
 		bet_amount -= 50
-		player.money += 50
+		Player.money += 50
 
 func _on_raise_bet_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("player")
-	if player.money >= 50:
+	if Player.money >= 50:
 		bet_amount += 50
-		player.money -= 50
+		Player.money -= 50
 
 func _on_bet_button_pressed() -> void:
 	EventBus.emit_signal("place_bet", bet_amount, get_path())
@@ -72,9 +70,7 @@ func hide_ui() -> void:
 	%BetUI.hide()
 
 func win() -> void:
-	var player = get_tree().get_first_node_in_group("player")
-	player.money += bet_amount * payout
-
+	Player.money += bet_amount * payout + bet_amount
 
 ## Gross float to ratio
 func float_to_ratio(value: float, max_denominator: int = 1000) -> String:

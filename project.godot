@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*uid://df8mo5wk6ce6q"
+LevelManager="*uid://e3487oyd17dd"
+Player="*uid://e2c0uodm0jks"
 
 [editor_plugins]
 

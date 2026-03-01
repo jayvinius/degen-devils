@@ -29,6 +29,10 @@ func _on_win_post_body_entered(body: Node2D) -> void:
 	else:
 		print("you lost")
 	race_won = true
+	$ContinueButton.show()
 
 func _on_timer_timeout() -> void:
 	EventBus.start_race.emit()
+
+func _on_continue_button_pressed() -> void:
+	LevelManager.goto_scene("res://Levels/upgrade_level.tscn")
