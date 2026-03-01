@@ -15,3 +15,50 @@ texture = ExtResource("1_1nucr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533527904]
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_g6tiw")
+
+[node name="BetUI" type="Control" parent="." unique_id=1775019056]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 66.0
+offset_top = -44.0
+offset_right = 109.0
+offset_bottom = 20.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BetUI" unique_id=1471342864]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 40.0
+
+[node name="HorseNameLabel" type="Label" parent="BetUI/VBoxContainer" unique_id=696313065]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Horse Name"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BetUI/VBoxContainer" unique_id=383547712]
+layout_mode = 2
+alignment = 1
+
+[node name="LowerBet" type="Button" parent="BetUI/VBoxContainer/HBoxContainer" unique_id=1313406483]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-$50"
+
+[node name="BetAmountLabel" type="Label" parent="BetUI/VBoxContainer/HBoxContainer" unique_id=431881275]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$0"
+
+[node name="RaiseBet" type="Button" parent="BetUI/VBoxContainer/HBoxContainer" unique_id=2062259877]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+$50"
+
+[node name="BetButton" type="Button" parent="BetUI/VBoxContainer" unique_id=680674668]
+layout_mode = 2
+text = "Bet"
+
+[connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/LowerBet" to="." method="_on_lower_bet_pressed"]
+[connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/RaiseBet" to="." method="_on_raise_bet_pressed"]
+[connection signal="pressed" from="BetUI/VBoxContainer/BetButton" to="." method="_on_bet_button_pressed"]

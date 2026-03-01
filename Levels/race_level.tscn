@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkt0p5s8w6i6a" path="res://Levels/race_level.gd" id="1_2li8p"]
 [ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="1_bfjxd"]
+[ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="2_b7qor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7qor"]
 size = Vector2(20, 327)
@@ -9,13 +10,9 @@ size = Vector2(20, 327)
 [node name="RaceLevel" type="Node2D" unique_id=918764093]
 script = ExtResource("1_2li8p")
 
+[node name="Player" parent="." unique_id=5565470 instance=ExtResource("2_b7qor")]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=928665251]
-
-[node name="Horse" parent="." unique_id=117766856 instance=ExtResource("1_bfjxd")]
-position = Vector2(-490, -101)
-
-[node name="Horse2" parent="." unique_id=1114416760 instance=ExtResource("1_bfjxd")]
-position = Vector2(-489, -258)
 
 [node name="Win post" type="Area2D" parent="." unique_id=12694547]
 position = Vector2(564, -12)
@@ -26,7 +23,15 @@ shape = SubResource("RectangleShape2D_b7qor")
 
 [node name="Timer" type="Timer" parent="." unique_id=2044125114]
 wait_time = 2.0
-autostart = true
+
+[node name="Horses" type="Node" parent="." unique_id=1764868986]
+unique_name_in_owner = true
+
+[node name="Horse" parent="Horses" unique_id=117766856 instance=ExtResource("1_bfjxd")]
+position = Vector2(-490, -101)
+
+[node name="Horse2" parent="Horses" unique_id=1114416760 instance=ExtResource("1_bfjxd")]
+position = Vector2(-489, -258)
 
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
