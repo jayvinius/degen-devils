@@ -1,12 +1,11 @@
 extends CharacterBody2D
 class_name Horse
 
-@export var acceleration: float = 5
-@export var max_speed: float = 300
 @export var horse_name: String = "Horse":
 	set(v):
 		horse_name = v
 		%HorseNameLabel.text = v
+
 @export var bet_amount: float = 0.0:
 	set(v):
 		bet_amount = v
@@ -22,11 +21,41 @@ enum State {
 	WIN,
 	LOSE,
 }
-
 var state: State = State.IDLE
 
+var _stat_base: Dictionary = {}
+var _stat_modifiers: Dictionary = {}
+
+func set_base(stat: StringName, value: float) -> void:
+	_stat_base[stat] = value
+
+func modify_stat(stat: StringName, value: float, is_multiplier: bool) -> void:
+	if stat not in _stat_modifiers:
+		_stat_modifiers[stat] = { "flat": 0.0, "multi": 1.0}
+	if _stat_base.has(stat):
+		if is_multiplier:
+			_stat_modifiers[stat]["multi"] *= value
+		else:
+			_stat_modifiers[stat]["flat"] += value
+
+func get_stat(stat: StringName) -> float:
+	if stat not in _stat_modifiers:
+		return _stat_base[stat]
+	return _stat_base[stat] * _stat_modifiers[stat]["multi"] + _stat_modifiers[stat]["flat"]
+
+func get_base(stat: StringName) -> float:
+	if stat not in _stat_base:
+		return 0.0
+	return _stat_base[stat]
+
+@export var player_horse: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# This is jank and I will do something different
+	# *eventually*
+	if not player_horse:
+		set_base("accel", randf_range(5, 20.0))
+		set_base("max_speed", randf_range(300, 750.0))
 	EventBus.connect("start_race", start_race)
 
 func start_race() -> void:
@@ -46,9 +75,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func run(_delta: float) -> void:
-	velocity.x += acceleration
-	if velocity.x > max_speed:
-		velocity.x = max_speed
+	velocity.x += get_stat("accel")
+	if velocity.x > get_stat("max_speed"):
+		velocity.x = get_stat("max_speed")
 
 	# if not is_on_floor():
 	# 	velocity += get_gravity() * delta
@@ -108,3 +137,20 @@ func gcd(a: int, b: int) -> int:
 		b = a % b
 		a = t
 	return a
+
+@export var drugs: Array[DrugData] = []
+
+signal item_added(item: DrugData)
+signal item_removed(item: DrugData)
+
+func add_drug(drug: DrugData) -> void:
+	drugs.append(drug)
+	for effect in drug.effects:
+		effect.apply(self)
+	emit_signal("item_added", drug)
+
+func remove_drug(drug: DrugData) -> void:
+	drugs.erase(drug)
+	for effect in drug.effects:
+		effect.remove(self)
+	emit_signal("item_removed", drug)

@@ -9,6 +9,7 @@ size = Vector2(20, 327)
 
 [node name="RaceLevel" type="Node2D" unique_id=918764093]
 script = ExtResource("1_2li8p")
+horse_scene = ExtResource("1_bfjxd")
 
 [node name="Player" parent="." unique_id=5565470 instance=ExtResource("2_b7qor")]
 
@@ -32,7 +33,6 @@ position = Vector2(-490, -101)
 
 [node name="Horse2" parent="Horses" unique_id=1114416760 instance=ExtResource("1_bfjxd")]
 position = Vector2(-489, -258)
-max_speed = 600.0
 
 [node name="ContinueButton" type="Button" parent="." unique_id=298284935]
 visible = false

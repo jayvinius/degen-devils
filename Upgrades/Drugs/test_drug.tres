@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DrugData" format=3 uid="uid://cfv3w0ssiqswk"]
+
+[ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_jvqvc"]
+[ext_resource type="Script" uid="uid://ctx37q2brqdkh" path="res://Upgrades/stat_boost_effect.gd" id="2_tpojf"]
+[ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="3_jnuwm"]
+
+[sub_resource type="Resource" id="Resource_x4m6p"]
+script = ExtResource("2_tpojf")
+stat = &"max_speed"
+value = 5.0
+is_multiplier = true
+metadata/_custom_type_script = "uid://ctx37q2brqdkh"
+
+[resource]
+script = ExtResource("3_jnuwm")
+id = &"1"
+drug_name = "test drug"
+description = "please don't find this one"
+effects = Array[ExtResource("1_jvqvc")]([SubResource("Resource_x4m6p")])
+metadata/_custom_type_script = "uid://bf3oayuti2o03"
