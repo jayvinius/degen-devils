@@ -2,35 +2,38 @@
 
 [ext_resource type="Script" uid="uid://bkutfydsr6d3" path="res://Upgrades/upgrade_ui.gd" id="1_4efdq"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4efdq"]
+
 [node name="PanelContainer" type="PanelContainer" unique_id=1491674669]
 offset_right = 133.0
 offset_bottom = 85.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4efdq")
 script = ExtResource("1_4efdq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=365011517]
+[node name="VBoxContainer" type="HBoxContainer" parent="." unique_id=564131345]
 layout_mode = 2
 
 [node name="UpgradeLabel" type="Label" parent="VBoxContainer" unique_id=1143161823]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 text = "Upgrade Name"
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=942547224]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Description"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1219519156]
-layout_mode = 2
-alignment = 1
-
-[node name="PriceLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=140541000]
+[node name="PriceLabel" type="Label" parent="VBoxContainer" unique_id=140541000]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Price"
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=416542915]
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=416542915]
 layout_mode = 2
 text = "Buy!"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

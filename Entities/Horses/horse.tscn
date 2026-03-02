@@ -1,10 +1,64 @@
 [gd_scene format=3 uid="uid://b28fs6048njje"]
 
-[ext_resource type="Texture2D" uid="uid://s2xtylgdbcvo" path="res://icon.svg" id="1_1nucr"]
 [ext_resource type="Script" uid="uid://d0xt71ogxh0ct" path="res://Entities/Horses/horse.gd" id="1_g6tiw"]
+[ext_resource type="Texture2D" uid="uid://cb2gk04sdv78v" path="res://horses/horseelectricc.png" id="2_g6tiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6tiw"]
 size = Vector2(129, 128)
+
+[sub_resource type="Animation" id="Animation_g6tiw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_651gn"]
+resource_name = "hurt"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_u4orp"]
+resource_name = "running"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.17453292, -0.17453292, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cd7e"]
+_data = {
+&"RESET": SubResource("Animation_g6tiw"),
+&"hurt": SubResource("Animation_651gn"),
+&"running": SubResource("Animation_u4orp")
+}
 
 [node name="Horse" type="CharacterBody2D" unique_id=1014873418]
 collision_mask = 3
@@ -12,7 +66,8 @@ script = ExtResource("1_g6tiw")
 max_health = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1469360933]
-texture = ExtResource("1_1nucr")
+scale = Vector2(-0.13, 0.13)
+texture = ExtResource("2_g6tiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533527904]
 position = Vector2(0.5, 1)
@@ -71,6 +126,9 @@ text = "Bet"
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=45963053]
+libraries/ = SubResource("AnimationLibrary_5cd7e")
 
 [connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/LowerBet" to="." method="_on_lower_bet_pressed"]
 [connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/RaiseBet" to="." method="_on_raise_bet_pressed"]

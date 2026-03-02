@@ -2,10 +2,42 @@
 
 [ext_resource type="Script" uid="uid://c8e4354cvuvr4" path="res://Levels/upgrade_level.gd" id="1_cossf"]
 [ext_resource type="PackedScene" uid="uid://0y7de83jhfvs" path="res://Upgrades/upgrade_ui.tscn" id="2_8x7bm"]
+[ext_resource type="Texture2D" uid="uid://m34nn0uehxpv" path="res://backgrounds/carpet.png" id="3_ubhjl"]
+[ext_resource type="Shader" uid="uid://dfhkpx0nst587" path="res://backgrounds/paper.gdshader" id="4_m7tty"]
+[ext_resource type="Shader" uid="uid://bbxwuu8sfudus" path="res://backgrounds/fake_qr.gdshader" id="5_cr1fa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cr1fa"]
+shader = ExtResource("4_m7tty")
+shader_parameter/paper_color = Color(0.9257877, 0.9285676, 0.86558396, 1)
+shader_parameter/crumple_scale = 9.14600043117512
+shader_parameter/crumple_strength = 0.0610000028975
+shader_parameter/light_dir = Vector3(0.52, -0.255, 0.4)
+shader_parameter/ambient = 0.6250000296875
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7tty"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1m2n1"]
+shader = ExtResource("5_cr1fa")
+shader_parameter/dark_color = Color(0.05, 0.05, 0.05, 1)
+shader_parameter/light_color = Color(0.95, 0.95, 0.95, 1)
+shader_parameter/grid_size = 25
+shader_parameter/seed = 12345
+shader_parameter/quiet_zone = 0.04
+shader_parameter/module_gap = 0.08
+shader_parameter/corner_radius = 0.15
 
 [node name="UpgradeLevel" type="Node2D" unique_id=776323558]
 script = ExtResource("1_cossf")
 drug_ui = ExtResource("2_8x7bm")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=99279838]
+z_index = -1000
+offset_left = -175.0
+offset_top = -107.0
+offset_right = 1547.0
+offset_bottom = 807.0
+texture = ExtResource("3_ubhjl")
+stretch_mode = 1
 
 [node name="Control" type="Control" parent="." unique_id=1143135559]
 layout_mode = 3
@@ -13,37 +45,106 @@ anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 647.0
 
-[node name="PlayerFundsLabel" type="Label" parent="Control" unique_id=1583269190]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Player Funds: $0"
-
-[node name="Button" type="Button" parent="Control" unique_id=106746098]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 77.0
-offset_right = 46.0
-offset_bottom = 108.0
-text = "Race"
-
-[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1312330917]
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2093968116]
+material = SubResource("ShaderMaterial_cr1fa")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.5
-offset_top = -20.0
-offset_right = 257.5
-offset_bottom = 20.0
+offset_left = -378.0
+offset_top = -297.0
+offset_right = 378.0
+offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Upgrades" type="HBoxContainer" parent="Control/PanelContainer" unique_id=23625697]
+[node name="Label" type="Label" parent="Control/ColorRect" unique_id=280351427]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.5
+offset_top = 23.669998
+offset_right = 58.5
+offset_bottom = 46.670013
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Hell's Casino"
+horizontal_alignment = 1
+
+[node name="PlayerFundsLabel" type="Label" parent="Control/ColorRect" unique_id=1583269190]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 83.13
+offset_right = 63.0
+offset_bottom = 106.13
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 19
+text = "Player Funds: $0"
+
+[node name="Button" type="Button" parent="Control/ColorRect" unique_id=106746098]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.5
+offset_top = -47.330017
+offset_right = 22.5
+offset_bottom = -16.330017
+grow_horizontal = 2
+grow_vertical = 0
+text = "Race"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/ColorRect" unique_id=1312330917]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -114.94501
+offset_right = 257.0
+offset_bottom = -74.94502
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m7tty")
+
+[node name="Upgrades" type="VBoxContainer" parent="Control/ColorRect/PanelContainer" unique_id=1796010906]
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect" unique_id=1296671726]
+layout_mode = 0
+offset_top = 115.5
+offset_right = 756.0
+offset_bottom = 119.5
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Control/ColorRect" unique_id=1584176241]
+material = SubResource("ShaderMaterial_1m2n1")
+layout_mode = 0
+offset_left = 134.5
+offset_top = 413.5
+offset_right = 621.5
+offset_bottom = 526.5
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Control/ColorRect" unique_id=553469419]
+layout_mode = 0
+offset_top = 400.0
+offset_right = 756.0
+offset_bottom = 404.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Control/ColorRect/Button" to="." method="_on_button_pressed"]

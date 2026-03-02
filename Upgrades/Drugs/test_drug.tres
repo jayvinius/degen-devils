@@ -24,5 +24,6 @@ script = ExtResource("3_jnuwm")
 id = &"1"
 drug_name = "test drug"
 description = "please don't find this one"
+rarity = 2
 effects = Array[ExtResource("1_jvqvc")]([SubResource("Resource_x4m6p"), SubResource("Resource_jnuwm")])
 metadata/_custom_type_script = "uid://bf3oayuti2o03"

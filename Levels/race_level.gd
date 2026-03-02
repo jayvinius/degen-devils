@@ -5,7 +5,33 @@ var race_won: bool = false
 
 @export var horse_scene: PackedScene
 
+var _horse_textures: Array[Texture2D] = []
+
+const HORSE_NAMES = [
+	"Thunderhoof", "Dusty Dan", "Sir Trots-a-Lot", "Glue Candidate",
+	"Nag Supreme", "Oopsie Daisy", "Ol' Reliable", "Buckets McGee",
+	"Spooky Boi", "Hay Fever", "Last Place Larry", "Knees McGee",
+]
+
+func _load_horse_textures() -> void:
+	var dir := DirAccess.open("res://horses")
+	if not dir:
+		return
+	dir.list_dir_begin()
+	var file := dir.get_next()
+	while file != "":
+		if file.ends_with(".png"):
+			_horse_textures.append(load("res://horses/" + file))
+		file = dir.get_next()
+
+func _random_texture() -> Texture2D:
+	if _horse_textures.is_empty():
+		return null
+	_horse_textures.shuffle()
+	return _horse_textures.pop_back()
+
 func _ready() -> void:
+	_load_horse_textures()
 	EventBus.connect("place_bet", bets_placed)
 
 	# TODO: spawn all horses at the race line
@@ -13,15 +39,31 @@ func _ready() -> void:
 	# please fix this josh
 	# seperate all of this data out to a resource maybe
 	# something that persists
+	var spawns = %HorseSpawns.get_children()
+
 	var player_horse = horse_scene.instantiate()
 	player_horse.set_base("accel", Player.horse.get_base("accel"))
 	player_horse.set_base("max_speed", Player.horse.get_base("max_speed"))
 	player_horse.horse_name = "AAAAAAAAA"
 	player_horse.player_horse = true
 	%Horses.add_child(player_horse)
+	if not Player.horse.texture:
+		Player.horse.texture = _random_texture()
+	player_horse.texture = Player.horse.texture
+	if spawns.size() > 0:
+		player_horse.global_position = spawns[0].global_position
 	for drug in Player.horse.drugs:
 		player_horse.add_drug(drug)
 	print(player_horse.drugs)
+
+	for i in 2:
+		var npc_horse = horse_scene.instantiate()
+		%Horses.add_child(npc_horse)
+		npc_horse.horse_name = HORSE_NAMES[randi() % HORSE_NAMES.size()]
+		npc_horse.texture = _random_texture()
+		var spawn_index = i + 1
+		if spawn_index < spawns.size():
+			npc_horse.global_position = spawns[spawn_index].global_position
 
 	var highest_speed := 0.0
 	for horse in %Horses.get_children():

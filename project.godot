@@ -21,6 +21,11 @@ LevelManager="*uid://e3487oyd17dd"
 Player="*uid://e2c0uodm0jks"
 DrugRegistry="*uid://cnv7xuvej01ld"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")

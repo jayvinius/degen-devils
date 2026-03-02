@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="2_b7qor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7qor"]
-size = Vector2(20, 327)
+size = Vector2(20, 773)
 
 [node name="RaceLevel" type="Node2D" unique_id=918764093]
 script = ExtResource("1_2li8p")
@@ -16,10 +16,10 @@ horse_scene = ExtResource("1_bfjxd")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=928665251]
 
 [node name="Win post" type="Area2D" parent="." unique_id=12694547]
-position = Vector2(564, -12)
+position = Vector2(626.9, 5.685)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Win post" unique_id=1973789775]
-position = Vector2(0, -153.5)
+position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_b7qor")
 
 [node name="Timer" type="Timer" parent="." unique_id=2044125114]
@@ -28,17 +28,23 @@ wait_time = 2.0
 [node name="Horses" type="Node" parent="." unique_id=1764868986]
 unique_name_in_owner = true
 
-[node name="Horse" parent="Horses" unique_id=117766856 instance=ExtResource("1_bfjxd")]
-position = Vector2(-490, -101)
-
-[node name="Horse2" parent="Horses" unique_id=1114416760 instance=ExtResource("1_bfjxd")]
-position = Vector2(-489, -258)
-
 [node name="ContinueButton" type="Button" parent="." unique_id=298284935]
 visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Continue"
+
+[node name="HorseSpawns" type="Node" parent="." unique_id=1954200121]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="HorseSpawns" unique_id=748776030]
+position = Vector2(-496, -132)
+
+[node name="Marker2D2" type="Marker2D" parent="HorseSpawns" unique_id=433466930]
+position = Vector2(-498, 70)
+
+[node name="Marker2D3" type="Marker2D" parent="HorseSpawns" unique_id=1812118406]
+position = Vector2(-506, 222)
 
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

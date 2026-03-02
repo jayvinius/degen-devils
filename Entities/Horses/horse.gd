@@ -21,6 +21,8 @@ class_name Horse
 		payout = v
 		%PayoutLabel.text = "Payout: " + float_to_ratio(v)
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 enum State {
 	IDLE,
 	RUNNING,
@@ -93,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func run(_delta: float) -> void:
+	animation_player.play("running")
 	velocity.x += get_stat("accel")
 	if velocity.x > get_stat("max_speed"):
 		velocity.x = get_stat("max_speed")
@@ -101,6 +104,7 @@ func run(_delta: float) -> void:
 	# 	velocity += get_gravity() * delta
 
 func hurt() -> void:
+	animation_player.play("hurt")
 	velocity.x = 0
 
 func _on_lower_bet_pressed() -> void:
