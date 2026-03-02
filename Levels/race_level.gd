@@ -9,6 +9,10 @@ func _ready() -> void:
 	EventBus.connect("place_bet", bets_placed)
 
 	# TODO: spawn all horses at the race line
+	# holy shit this code is bad and I hate it with a passion
+	# please fix this josh
+	# seperate all of this data out to a resource maybe
+	# something that persists
 	var player_horse = horse_scene.instantiate()
 	player_horse.set_base("accel", Player.horse.get_base("accel"))
 	player_horse.set_base("max_speed", Player.horse.get_base("max_speed"))
@@ -25,7 +29,7 @@ func _ready() -> void:
 		if horse.get_stat("max_speed") > highest_speed:
 			highest_speed = horse.get_stat("max_speed")
 	for horse in %Horses.get_children():
-		horse.payout = highest_speed / horse.get_stat("max_speed")
+		horse.payout = roundf(highest_speed / horse.get_stat("max_speed") * 10.0) / 10.0
 
 func bets_placed(amount: float, path: NodePath) -> void:
 	for horse in %Horses.get_children():

@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_jvqvc"]
 [ext_resource type="Script" uid="uid://ctx37q2brqdkh" path="res://Upgrades/stat_boost_effect.gd" id="2_tpojf"]
+[ext_resource type="PackedScene" uid="uid://jfrvjhn7gm2x" path="res://Upgrades/throwing_object.tscn" id="3_0sar3"]
 [ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="3_jnuwm"]
+[ext_resource type="Script" uid="uid://cr1p5u1e6mv4b" path="res://Upgrades/timer_effect.gd" id="3_tpojf"]
 
 [sub_resource type="Resource" id="Resource_x4m6p"]
 script = ExtResource("2_tpojf")
@@ -11,10 +13,16 @@ value = 5.0
 is_multiplier = true
 metadata/_custom_type_script = "uid://ctx37q2brqdkh"
 
+[sub_resource type="Resource" id="Resource_jnuwm"]
+script = ExtResource("3_tpojf")
+interval = 0.6
+scene = ExtResource("3_0sar3")
+metadata/_custom_type_script = "uid://cr1p5u1e6mv4b"
+
 [resource]
 script = ExtResource("3_jnuwm")
 id = &"1"
 drug_name = "test drug"
 description = "please don't find this one"
-effects = Array[ExtResource("1_jvqvc")]([SubResource("Resource_x4m6p")])
+effects = Array[ExtResource("1_jvqvc")]([SubResource("Resource_x4m6p"), SubResource("Resource_jnuwm")])
 metadata/_custom_type_script = "uid://bf3oayuti2o03"

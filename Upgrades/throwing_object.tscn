@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://jfrvjhn7gm2x"]
+
+[ext_resource type="Texture2D" uid="uid://s2xtylgdbcvo" path="res://icon.svg" id="1_nggmq"]
+[ext_resource type="Script" uid="uid://c11bgsnwb6xb3" path="res://Upgrades/throwing_object.gd" id="1_uhxgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhxgt"]
+size = Vector2(38, 37)
+
+[node name="ThrowingObject" type="Area2D" unique_id=1792495094]
+script = ExtResource("1_uhxgt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912410389]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_uhxgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=875235146]
+position = Vector2(1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.31249997, 0.31249997)
+texture = ExtResource("1_nggmq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

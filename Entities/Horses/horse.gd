@@ -1,6 +1,12 @@
 extends CharacterBody2D
 class_name Horse
 
+@export var texture: Texture2D:
+	set(v):
+		texture = v
+		if is_node_ready():
+			$Sprite2D.texture = v
+
 @export var horse_name: String = "Horse":
 	set(v):
 		horse_name = v
@@ -51,11 +57,16 @@ func get_base(stat: StringName) -> float:
 @export var player_horse: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if texture:
+		$Sprite2D.texture = texture
 	# This is jank and I will do something different
 	# *eventually*
 	if not player_horse:
 		set_base("accel", randf_range(5, 20.0))
 		set_base("max_speed", randf_range(300, 750.0))
+
+	add_to_group("horses")
+
 	EventBus.connect("start_race", start_race)
 
 func start_race() -> void:
@@ -154,3 +165,6 @@ func remove_drug(drug: DrugData) -> void:
 	for effect in drug.effects:
 		effect.remove(self)
 	emit_signal("item_removed", drug)
+
+func take_damage() -> void:
+	print("ow")
