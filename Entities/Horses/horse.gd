@@ -26,6 +26,7 @@ enum State {
 	RUNNING,
 	WIN,
 	LOSE,
+	HURT,
 }
 var state: State = State.IDLE
 
@@ -54,9 +55,13 @@ func get_base(stat: StringName) -> float:
 		return 0.0
 	return _stat_base[stat]
 
+@export var max_health: int = 3
+var health: int
+
 @export var player_horse: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = max_health
 	if texture:
 		$Sprite2D.texture = texture
 	# This is jank and I will do something different
@@ -83,6 +88,8 @@ func _physics_process(delta: float) -> void:
 			pass
 		State.LOSE:
 			pass
+		State.HURT:
+			hurt()
 	move_and_slide()
 
 func run(_delta: float) -> void:
@@ -92,6 +99,9 @@ func run(_delta: float) -> void:
 
 	# if not is_on_floor():
 	# 	velocity += get_gravity() * delta
+
+func hurt() -> void:
+	velocity.x = 0
 
 func _on_lower_bet_pressed() -> void:
 	if bet_amount >= 0:
@@ -108,6 +118,14 @@ func _on_bet_button_pressed() -> void:
 
 func hide_ui() -> void:
 	%BetUI.hide()
+
+func take_damage() -> void:
+	print('ow')
+	health -= 1
+	if health <= 0:
+		state = State.HURT
+		health = 1
+		%HurtTimer.start()
 
 func win() -> void:
 	Player.money += bet_amount * payout + bet_amount
@@ -166,5 +184,6 @@ func remove_drug(drug: DrugData) -> void:
 		effect.remove(self)
 	emit_signal("item_removed", drug)
 
-func take_damage() -> void:
-	print("ow")
+func _on_hurt_timer_timeout() -> void:
+	print("here")
+	state = State.RUNNING

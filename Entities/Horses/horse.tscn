@@ -9,6 +9,7 @@ size = Vector2(129, 128)
 [node name="Horse" type="CharacterBody2D" unique_id=1014873418]
 collision_mask = 3
 script = ExtResource("1_g6tiw")
+max_health = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1469360933]
 texture = ExtResource("1_1nucr")
@@ -66,6 +67,12 @@ text = "+$50"
 layout_mode = 2
 text = "Bet"
 
+[node name="HurtTimer" type="Timer" parent="." unique_id=1715926370]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
 [connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/LowerBet" to="." method="_on_lower_bet_pressed"]
 [connection signal="pressed" from="BetUI/VBoxContainer/HBoxContainer/RaiseBet" to="." method="_on_raise_bet_pressed"]
 [connection signal="pressed" from="BetUI/VBoxContainer/BetButton" to="." method="_on_bet_button_pressed"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
