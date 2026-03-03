@@ -22,6 +22,7 @@ class_name Horse
 		%PayoutLabel.text = "Payout: " + float_to_ratio(v)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var teleport_particles: GPUParticles2D
 
 enum State {
 	IDLE,

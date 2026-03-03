@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://dkt0p5s8w6i6a" path="res://Levels/race_level.gd" id="1_2li8p"]
 [ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="1_bfjxd"]
 [ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="2_b7qor"]
+[ext_resource type="Texture2D" uid="uid://bk3ptmg1on5cx" path="res://backgrounds/racetrack.png" id="4_kdd6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7qor"]
-size = Vector2(20, 773)
+size = Vector2(701.1, 773)
 
 [node name="RaceLevel" type="Node2D" unique_id=918764093]
 script = ExtResource("1_2li8p")
@@ -19,7 +20,7 @@ horse_scene = ExtResource("1_bfjxd")
 position = Vector2(626.9, 5.685)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Win post" unique_id=1973789775]
-position = Vector2(0, -22.5)
+position = Vector2(340.55, -22.5)
 shape = SubResource("RectangleShape2D_b7qor")
 
 [node name="Timer" type="Timer" parent="." unique_id=2044125114]
@@ -28,24 +29,38 @@ wait_time = 2.0
 [node name="Horses" type="Node" parent="." unique_id=1764868986]
 unique_name_in_owner = true
 
-[node name="ContinueButton" type="Button" parent="." unique_id=298284935]
-visible = false
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Continue"
-
 [node name="HorseSpawns" type="Node" parent="." unique_id=1954200121]
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="HorseSpawns" unique_id=748776030]
-position = Vector2(-496, -132)
+position = Vector2(-500, -115.525)
 
 [node name="Marker2D2" type="Marker2D" parent="HorseSpawns" unique_id=433466930]
-position = Vector2(-498, 70)
+position = Vector2(-500, 52.695)
 
 [node name="Marker2D3" type="Marker2D" parent="HorseSpawns" unique_id=1812118406]
-position = Vector2(-506, 222)
+position = Vector2(-500, 236.28)
+
+[node name="Finish" type="Timer" parent="." unique_id=1105964649]
+unique_name_in_owner = true
+
+[node name="Racetrack" type="Sprite2D" parent="." unique_id=1932243799]
+z_index = -100
+texture = ExtResource("4_kdd6d")
+
+[node name="HorseWonLabel" type="Label" parent="." unique_id=663226396]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -204.0
+offset_top = -151.0
+offset_right = 206.0
+offset_bottom = -63.0
+theme_override_font_sizes/font_size = 64
+text = "Horse Won!!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="timeout" from="Finish" to="." method="_on_finish_timeout"]

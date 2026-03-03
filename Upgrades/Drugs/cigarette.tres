@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DrugData" format=3 uid="uid://dqa1r8ibxridx"]
+
+[ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_sfw13"]
+[ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="2_jn1my"]
+[ext_resource type="Script" uid="uid://ctx37q2brqdkh" path="res://Upgrades/stat_boost_effect.gd" id="2_ux87s"]
+
+[sub_resource type="Resource" id="Resource_h4dow"]
+script = ExtResource("2_ux87s")
+stat = &"accel"
+value = 2.0
+is_multiplier = true
+metadata/_custom_type_script = "uid://ctx37q2brqdkh"
+
+[sub_resource type="Resource" id="Resource_gogkd"]
+script = ExtResource("2_ux87s")
+stat = &"max_speed"
+value = 0.75
+is_multiplier = true
+metadata/_custom_type_script = "uid://ctx37q2brqdkh"
+
+[resource]
+script = ExtResource("2_jn1my")
+id = &"3"
+drug_name = "Cigarette"
+price = 50.0
+description = "mmmm, Cigarette"
+effects = Array[ExtResource("1_sfw13")]([SubResource("Resource_h4dow"), SubResource("Resource_gogkd")])
+metadata/_custom_type_script = "uid://bf3oayuti2o03"

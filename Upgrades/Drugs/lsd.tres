@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DrugData" format=3 uid="uid://ch8foywgn0kvh"]
+
+[ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_ow87p"]
+[ext_resource type="Script" uid="uid://bi78mbm1hmqr4" path="res://Upgrades/teleport.gd" id="2_t01mf"]
+[ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="2_vidyg"]
+
+[sub_resource type="Resource" id="Resource_iu74l"]
+script = ExtResource("2_t01mf")
+metadata/_custom_type_script = "uid://bi78mbm1hmqr4"
+
+[resource]
+script = ExtResource("2_vidyg")
+id = &"4"
+drug_name = "LSD"
+price = 150.0
+description = "woah man, these tabs are crazy"
+effects = Array[ExtResource("1_ow87p")]([SubResource("Resource_iu74l")])
+metadata/_custom_type_script = "uid://bf3oayuti2o03"

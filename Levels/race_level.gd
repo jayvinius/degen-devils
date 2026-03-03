@@ -89,10 +89,20 @@ func _on_win_post_body_entered(body: Node2D) -> void:
 	else:
 		print("you lost")
 	race_won = true
-	$ContinueButton.show()
+	%Finish.start()
+	if body == horse_bet_on:
+		%HorseWonLabel.text = "%s Won!\nYou made $%.2f" % [body.horse_name, body.payout * body.bet_amount]
+	else:
+		%HorseWonLabel.text = "%s Won!\nYou lost $%.2f" % [body.horse_name, horse_bet_on.bet_amount]
+	%HorseWonLabel.show()
+	EventBus.finish_race.emit()
 
 func _on_timer_timeout() -> void:
 	EventBus.start_race.emit()
 
 func _on_continue_button_pressed() -> void:
+	LevelManager.goto_scene("res://Levels/upgrade_level.tscn")
+
+
+func _on_finish_timeout() -> void:
 	LevelManager.goto_scene("res://Levels/upgrade_level.tscn")

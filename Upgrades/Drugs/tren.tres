@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="DrugData" format=3 uid="uid://bbjogymm2c16h"]
+
+[ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_o4d6t"]
+[ext_resource type="Script" uid="uid://ctx37q2brqdkh" path="res://Upgrades/stat_boost_effect.gd" id="2_gba04"]
+[ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="2_t1jld"]
+[ext_resource type="Script" uid="uid://6iak3jt1fftx" path="res://Upgrades/timer_hurt_effect.gd" id="3_a0v23"]
+
+[sub_resource type="Resource" id="Resource_rs71t"]
+script = ExtResource("2_gba04")
+stat = &"max_speed"
+value = 2.0
+is_multiplier = true
+metadata/_custom_type_script = "uid://ctx37q2brqdkh"
+
+[sub_resource type="Resource" id="Resource_loy7e"]
+script = ExtResource("2_gba04")
+stat = &"accel"
+value = 2.0
+is_multiplier = true
+metadata/_custom_type_script = "uid://ctx37q2brqdkh"
+
+[sub_resource type="Resource" id="Resource_6a87k"]
+script = ExtResource("3_a0v23")
+metadata/_custom_type_script = "uid://6iak3jt1fftx"
+
+[resource]
+script = ExtResource("2_t1jld")
+id = &"2"
+drug_name = "Steroids"
+price = 300.0
+description = "Couldn't possibly hurt"
+rarity = 1
+effects = Array[ExtResource("1_o4d6t")]([SubResource("Resource_rs71t"), SubResource("Resource_loy7e"), SubResource("Resource_6a87k")])
+metadata/_custom_type_script = "uid://bf3oayuti2o03"

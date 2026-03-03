@@ -15,7 +15,7 @@ extends Control
 			%PriceLabel.text = ""
 
 func _on_button_pressed() -> void:
-	if Player.money >= price:
-		Player.money -= price
+	if Player.money >= drug.price:
+		Player.money -= drug.price
 		EventBus.emit_signal("buy_upgrade", drug.id)
 		hide()

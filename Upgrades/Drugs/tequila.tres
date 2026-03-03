@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DrugData" format=3 uid="uid://plfvj55a0dwm"]
+
+[ext_resource type="Script" uid="uid://myohvyhvnv81" path="res://Upgrades/drug_effect.gd" id="1_lkkrh"]
+[ext_resource type="PackedScene" uid="uid://jfrvjhn7gm2x" path="res://Upgrades/throwing_object.tscn" id="2_10xrf"]
+[ext_resource type="Script" uid="uid://cr1p5u1e6mv4b" path="res://Upgrades/timer_effect.gd" id="2_kd8de"]
+[ext_resource type="Script" uid="uid://bf3oayuti2o03" path="res://Upgrades/drug_data.gd" id="2_udo52"]
+
+[sub_resource type="Resource" id="Resource_10xrf"]
+script = ExtResource("2_kd8de")
+scene = ExtResource("2_10xrf")
+metadata/_custom_type_script = "uid://cr1p5u1e6mv4b"
+
+[resource]
+script = ExtResource("2_udo52")
+id = &"1"
+drug_name = "Tequila"
+price = 200.0
+description = "Tequila makes me angry"
+rarity = 1
+effects = Array[ExtResource("1_lkkrh")]([SubResource("Resource_10xrf")])
+metadata/_custom_type_script = "uid://bf3oayuti2o03"
