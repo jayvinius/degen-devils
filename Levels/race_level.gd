@@ -91,9 +91,9 @@ func _on_win_post_body_entered(body: Node2D) -> void:
 	race_won = true
 	%Finish.start()
 	if body == horse_bet_on:
-		%HorseWonLabel.text = "%s Won!\nYou made $%.2f" % [body.horse_name, body.payout * body.bet_amount]
+		%HorseWonLabel.text = "[rainbow freq=1.0][shake rate=10.0 level=5 connected=1]%s Won!\nYou made $%.2f[/shake][/rainbow]" % [body.horse_name, body.payout * body.bet_amount]
 	else:
-		%HorseWonLabel.text = "%s Won!\nYou lost $%.2f" % [body.horse_name, horse_bet_on.bet_amount]
+		%HorseWonLabel.text = "[rainbow freq=1.0][shake rate=10.0 level=5 connected=1]%s Won!\nYou lost $%.2f[/shake][/rainbow]" % [body.horse_name, horse_bet_on.bet_amount]
 	%HorseWonLabel.show()
 	EventBus.finish_race.emit()
 

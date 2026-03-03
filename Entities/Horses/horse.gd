@@ -108,8 +108,10 @@ func hurt() -> void:
 	animation_player.play("hurt")
 	velocity.x = 0
 
+var all_in: bool
+
 func _on_lower_bet_pressed() -> void:
-	if bet_amount >= 0:
+	if bet_amount >= 0 and not all_in:
 		bet_amount -= 50
 		Player.money += 50
 
@@ -117,6 +119,11 @@ func _on_raise_bet_pressed() -> void:
 	if Player.money >= 50:
 		bet_amount += 50
 		Player.money -= 50
+		return
+	if Player.money > 0:
+		bet_amount += Player.money
+		Player.money = 0
+		all_in = true
 
 func _on_bet_button_pressed() -> void:
 	EventBus.emit_signal("place_bet", bet_amount, get_path())
