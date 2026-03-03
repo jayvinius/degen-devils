@@ -4,7 +4,10 @@ extends Node
 
 @export var horse: Horse
 
+@export var round: int
+
 func _ready() -> void:
+	round = 0
 	horse = Horse.new()
 	horse.set_base("accel", randf_range(5, 20.0))
 	horse.set_base("max_speed", randf_range(300, 750.0))

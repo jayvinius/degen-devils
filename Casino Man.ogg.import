@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b3j38lv7nayqb"
+path="res://.godot/imported/Casino Man.ogg-dc49fca13eaf6015503f2a4712df38f6.oggvorbisstr"
+
+[deps]
+
+source_file="res://Casino Man.ogg"
+dest_files=["res://.godot/imported/Casino Man.ogg-dc49fca13eaf6015503f2a4712df38f6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

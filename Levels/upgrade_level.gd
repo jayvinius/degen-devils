@@ -9,6 +9,7 @@ var player_funds: float:
 		%PlayerFundsLabel.text = "Player Funds: $%s" % player_funds
 
 func _ready() -> void:
+	EventBus.connect("buy_upgrade", play_sound)
 	for i in range(3):
 		var drug := DrugRegistry.get_random_drug()
 		drugs.append(drug)
@@ -22,3 +23,6 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	LevelManager.goto_scene("res://Levels/race_level.tscn")
+
+func play_sound(name) -> void:
+	%AudioStreamPlayer2D.play()

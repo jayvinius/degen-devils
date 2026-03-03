@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://0y7de83jhfvs"]
 
 [ext_resource type="Script" uid="uid://bkutfydsr6d3" path="res://Upgrades/upgrade_ui.gd" id="1_4efdq"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="2_enfgf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4efdq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enfgf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ivkqk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xe8m"]
 
 [node name="PanelContainer" type="PanelContainer" unique_id=1491674669]
 offset_right = 133.0
@@ -17,23 +24,59 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("2_enfgf")
+theme_override_font_sizes/font_size = 35
 text = "Upgrade Name"
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=942547224]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_enfgf")
+theme_override_font_sizes/font_size = 25
 text = "Description"
 
 [node name="PriceLabel" type="Label" parent="VBoxContainer" unique_id=140541000]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_enfgf")
+theme_override_font_sizes/font_size = 26
 text = "Price"
 
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=416542915]
+custom_minimum_size = Vector2(55.285, 0)
 layout_mode = 2
-text = "Buy!"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_enfgf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_enfgf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ivkqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5xe8m")
+
+[node name="BuyText" type="RichTextLabel" parent="VBoxContainer/Button" unique_id=1254056980]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.642487
+offset_top = -21.5
+offset_right = 35.715027
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_enfgf")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Buy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Button/BuyText" to="." method="_on_rich_text_label_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Button/BuyText" to="." method="_on_buy_text_mouse_exited"]

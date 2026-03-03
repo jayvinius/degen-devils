@@ -19,3 +19,11 @@ func _on_button_pressed() -> void:
 		Player.money -= drug.price
 		EventBus.emit_signal("buy_upgrade", drug.id)
 		hide()
+
+
+func _on_rich_text_label_mouse_entered() -> void:
+	%BuyText.text = "[rainbow]Buy[/rainbow]"
+
+
+func _on_buy_text_mouse_exited() -> void:
+	%BuyText.text = "Buy"

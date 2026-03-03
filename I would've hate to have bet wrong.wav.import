@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://uhsddln6ak0e"
+path="res://.godot/imported/I would've hate to have bet wrong.wav-a09384e991012dabe704fb59072fa3a4.sample"
+
+[deps]
+
+source_file="res://I would've hate to have bet wrong.wav"
+dest_files=["res://.godot/imported/I would've hate to have bet wrong.wav-a09384e991012dabe704fb59072fa3a4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

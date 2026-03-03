@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dkot2h3c3v8ut"]
+
+[ext_resource type="Script" uid="uid://bwj8u74siepq0" path="res://Levels/main_menu.gd" id="1_15p6s"]
+[ext_resource type="Texture2D" uid="uid://h2ttcyvx526f" path="res://Menus/DEGENDEVILSSCREEN.png" id="1_jy27m"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="3_3es34"]
+[ext_resource type="Texture2D" uid="uid://dxw2ogmo3k1ub" path="res://Menus/DEGENDEVILSLOGOTRANSPARENT.png" id="3_15p6s"]
+[ext_resource type="AudioStream" uid="uid://bbqwwlmckwg85" path="res://degen devil sound.wav" id="4_8md67"]
+
+[sub_resource type="Animation" id="Animation_jy27m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(227, -500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3es34"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(227, -500), Vector2(227, 109.125)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8md67"]
+_data = {
+&"RESET": SubResource("Animation_jy27m"),
+&"start": SubResource("Animation_3es34")
+}
+
+[node name="MainMenu" type="Control" unique_id=1033047384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_15p6s")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2012348544]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_jy27m")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=335823278]
+layout_mode = 0
+offset_left = 227.0
+offset_top = -500.0
+offset_right = 970.1111
+offset_bottom = -81.999756
+texture = ExtResource("3_15p6s")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=914963041]
+libraries/ = SubResource("AnimationLibrary_8md67")
+autoplay = &"start"
+
+[node name="Button" type="Button" parent="." unique_id=1687044437]
+visible = false
+layout_mode = 0
+offset_left = 530.0
+offset_top = 542.0
+offset_right = 641.0
+offset_bottom = 583.0
+theme_override_fonts/font = ExtResource("3_3es34")
+theme_override_font_sizes/font_size = 40
+text = "Play!!!"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2060770639]
+stream = ExtResource("4_8md67")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

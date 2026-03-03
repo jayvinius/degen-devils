@@ -30,6 +30,9 @@ func _random_texture() -> Texture2D:
 	_horse_textures.shuffle()
 	return _horse_textures.pop_back()
 
+func _process(delta: float) -> void:
+	$PlayerFunds.text = "Player Funds $%.2f" % Player.money
+
 func _ready() -> void:
 	_load_horse_textures()
 	EventBus.connect("place_bet", bets_placed)
@@ -44,7 +47,7 @@ func _ready() -> void:
 	var player_horse = horse_scene.instantiate()
 	player_horse.set_base("accel", Player.horse.get_base("accel"))
 	player_horse.set_base("max_speed", Player.horse.get_base("max_speed"))
-	player_horse.horse_name = "AAAAAAAAA"
+	player_horse.horse_name = "Trusty Steed"
 	player_horse.player_horse = true
 	%Horses.add_child(player_horse)
 	if not Player.horse.texture:
@@ -54,13 +57,16 @@ func _ready() -> void:
 		player_horse.global_position = spawns[0].global_position
 	for drug in Player.horse.drugs:
 		player_horse.add_drug(drug)
-	print(player_horse.drugs)
 
 	for i in 2:
 		var npc_horse = horse_scene.instantiate()
 		%Horses.add_child(npc_horse)
 		npc_horse.horse_name = HORSE_NAMES[randi() % HORSE_NAMES.size()]
 		npc_horse.texture = _random_texture()
+		if Player.round > 0:
+			for j in range(Player.round):
+				npc_horse.add_drug(DrugRegistry.get_random_drug())
+
 		var spawn_index = i + 1
 		if spawn_index < spawns.size():
 			npc_horse.global_position = spawns[spawn_index].global_position
@@ -96,6 +102,7 @@ func _on_win_post_body_entered(body: Node2D) -> void:
 		%HorseWonLabel.text = "[rainbow freq=1.0][shake rate=10.0 level=5 connected=1]%s Won!\nYou lost $%.2f[/shake][/rainbow]" % [body.horse_name, horse_bet_on.bet_amount]
 	%HorseWonLabel.show()
 	EventBus.finish_race.emit()
+	Player.round += 1
 
 func _on_timer_timeout() -> void:
 	EventBus.start_race.emit()
@@ -105,4 +112,9 @@ func _on_continue_button_pressed() -> void:
 
 
 func _on_finish_timeout() -> void:
-	LevelManager.goto_scene("res://Levels/upgrade_level.tscn")
+	# I know these are backwards
+	# I hate duplicating scenes in godot
+	if Player.money == 0:
+		LevelManager.goto_scene("res://Levels/upgrade_level.tscn")
+	else:
+		LevelManager.goto_scene("res://Levels/you_lose.tscn")

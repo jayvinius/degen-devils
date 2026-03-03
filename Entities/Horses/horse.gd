@@ -169,8 +169,8 @@ func float_to_ratio(value: float, max_denominator: int = 1000) -> String:
 	best_den /= g
 
 	if negative:
-		return "-%d:%d" % [best_num, best_den]
-	return "%d:%d" % [best_num, best_den]
+		return "-%d : %d" % [best_num, best_den]
+	return "%d : %d" % [best_num, best_den]
 
 func gcd(a: int, b: int) -> int:
 	while b != 0:

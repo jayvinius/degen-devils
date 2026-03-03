@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="1_bfjxd"]
 [ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="2_b7qor"]
 [ext_resource type="Texture2D" uid="uid://bk3ptmg1on5cx" path="res://backgrounds/racetrack.png" id="4_kdd6d"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="5_7af06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7qor"]
 size = Vector2(701.1, 773)
@@ -56,11 +57,21 @@ offset_left = -366.0
 offset_top = -151.0
 offset_right = 373.0
 offset_bottom = 156.0
+theme_override_fonts/normal_font = ExtResource("5_7af06")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "Horse Won!!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlayerFunds" type="Label" parent="." unique_id=687702166]
+offset_left = -536.0
+offset_top = -282.0
+offset_right = -496.0
+offset_bottom = -259.0
+theme_override_fonts/font = ExtResource("5_7af06")
+theme_override_font_sizes/font_size = 30
+text = "Player Funds"
 
 [connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
