@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmqr5tyrkfpwn" path="res://Globals/level_manager.gd" id="1_k1jky"]
 [ext_resource type="Shader" uid="uid://ceal06ghmetmk" path="res://backgrounds/crt.gdshader" id="2_lufut"]
-[ext_resource type="AudioStream" uid="uid://b3j38lv7nayqb" path="res://Casino Man.ogg" id="3_0hosf"]
+[ext_resource type="AudioStream" uid="uid://b3j38lv7nayqb" path="res://sounds/Casino Man.ogg" id="3_0hosf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k1jky"]
 shader = ExtResource("2_lufut")
@@ -20,7 +20,7 @@ shader_parameter/distort_intensity = 0.005
 shader_parameter/noise_opacity = 0.03
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.005
-shader_parameter/aberration = 0.006000047784999962
+shader_parameter/aberration = 0.00600004778499996
 shader_parameter/brightness = 1.18
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.4030000191425

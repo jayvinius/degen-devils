@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://e2c0uodm0jks"]
 
 [ext_resource type="Script" uid="uid://cl0icvqeeb2o7" path="res://Entities/player.gd" id="1_tcnsb"]
+[ext_resource type="Resource" uid="uid://c8xrlyh3bbw0j" path="res://Entities/Bosses/first_boss.tres" id="2_tcnsb"]
+[ext_resource type="Script" uid="uid://qm2wc7682tum" path="res://Entities/boss_data.gd" id="2_xd3k7"]
 
 [node name="Player" type="Node" unique_id=5565470]
 script = ExtResource("1_tcnsb")
+bosses = Array[ExtResource("2_xd3k7")]([ExtResource("2_tcnsb")])

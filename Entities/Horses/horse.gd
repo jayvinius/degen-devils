@@ -12,10 +12,7 @@ class_name Horse
 		horse_name = v
 		%HorseNameLabel.text = v
 
-@export var bet_amount: float = 0.0:
-	set(v):
-		bet_amount = v
-		%BetAmountLabel.text = "$" + str(v)
+@export var bet_amount: float = 0.0
 @export var payout: float = 1.0:
 	set(v):
 		payout = v
@@ -58,7 +55,7 @@ func get_base(stat: StringName) -> float:
 		return 0.0
 	return _stat_base[stat]
 
-@export var max_health: int = 3
+@export var max_health: int = 1
 var health: int
 
 @export var player_horse: bool = false
@@ -69,7 +66,7 @@ func _ready() -> void:
 		$Sprite2D.texture = texture
 	# This is jank and I will do something different
 	# *eventually*
-	if not player_horse:
+	if not player_horse and _stat_base.is_empty():
 		set_base("accel", randf_range(5, 20.0))
 		set_base("max_speed", randf_range(300, 750.0))
 
@@ -108,28 +105,6 @@ func hurt() -> void:
 	animation_player.play("hurt")
 	velocity.x = 0
 
-var all_in: bool
-
-func _on_lower_bet_pressed() -> void:
-	if bet_amount >= 0 and not all_in:
-		bet_amount -= 50
-		Player.money += 50
-
-func _on_raise_bet_pressed() -> void:
-	if Player.money >= 50:
-		bet_amount += 50
-		Player.money -= 50
-		return
-	if Player.money > 0:
-		bet_amount += Player.money
-		Player.money = 0
-		all_in = true
-
-func _on_bet_button_pressed() -> void:
-	EventBus.emit_signal("place_bet", bet_amount, get_path())
-
-func hide_ui() -> void:
-	%BetUI.hide()
 
 func take_damage() -> void:
 	print('ow')
@@ -185,10 +160,11 @@ signal item_added(item: DrugData)
 signal item_removed(item: DrugData)
 
 func add_drug(drug: DrugData) -> void:
-	drugs.append(drug)
-	for effect in drug.effects:
+	var d := drug.duplicate(true)
+	drugs.append(d)
+	for effect in d.effects:
 		effect.apply(self)
-	emit_signal("item_added", drug)
+	emit_signal("item_added", d)
 
 func remove_drug(drug: DrugData) -> void:
 	drugs.erase(drug)
@@ -197,5 +173,4 @@ func remove_drug(drug: DrugData) -> void:
 	emit_signal("item_removed", drug)
 
 func _on_hurt_timer_timeout() -> void:
-	print("here")
 	state = State.RUNNING

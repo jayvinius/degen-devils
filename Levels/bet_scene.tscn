@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cs8brtmttwlb6"]
+
+[ext_resource type="Script" uid="uid://iolx6sedv68l" path="res://Levels/bet_scene.gd" id="1_betscene"]
+
+[node name="BetScene" type="Control" unique_id=913035393]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_betscene")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1232389784]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -31.0
+offset_right = 43.5
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=350682311]
+layout_mode = 2
+
+[node name="PlayerFundsLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=367405368]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Money"
+
+[node name="BossInfoLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=490128374]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Next: Boss"
+
+[node name="Horses" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1178611468]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="StartRaceButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=222222201]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+disabled = true
+text = "Start Race"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/StartRaceButton" to="." method="_on_start_race_button_pressed"]

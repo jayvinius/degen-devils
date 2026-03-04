@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cw1j34k4beyhy"]
+
+[ext_resource type="Texture2D" uid="uid://cb2gk04sdv78v" path="res://horses/horseelectricc.png" id="1_j3cp4"]
+[ext_resource type="Script" uid="uid://horse_card_script" path="res://Entities/Horses/horse_card.gd" id="2_horse"]
+
+[node name="HorseCard" type="PanelContainer" unique_id=186362851]
+script = ExtResource("2_horse")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=513293624]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=943938874]
+layout_mode = 2
+text = "Horse Name"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1883594048]
+layout_mode = 2
+texture = ExtResource("1_j3cp4")
+expand_mode = 4
+
+[node name="Payout Label" type="Label" parent="HBoxContainer" unique_id=325393115]
+layout_mode = 2
+text = "Payout: 1 : 3"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=120788671]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=1398871415]
+layout_mode = 2
+text = "Bet $50"
+
+[node name="BetAmountLabel" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=858554866]
+layout_mode = 2
+text = "Bet: $0"
+
+[connection signal="pressed" from="HBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

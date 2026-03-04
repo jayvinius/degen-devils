@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://0y7de83jhfvs"]
 
 [ext_resource type="Script" uid="uid://bkutfydsr6d3" path="res://Upgrades/upgrade_ui.gd" id="1_4efdq"]
-[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="2_enfgf"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://misc_assets/Jewel 6.ttf" id="2_enfgf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4efdq"]
 

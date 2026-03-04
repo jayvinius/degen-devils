@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="1_bfjxd"]
 [ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="2_b7qor"]
 [ext_resource type="Texture2D" uid="uid://bk3ptmg1on5cx" path="res://backgrounds/racetrack.png" id="4_kdd6d"]
-[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="5_7af06"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://misc_assets/Jewel 6.ttf" id="5_7af06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7qor"]
 size = Vector2(701.1, 773)

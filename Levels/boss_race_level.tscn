@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://boss_race_level1"]
+
+[ext_resource type="Script" path="res://Levels/boss_race_level.gd" id="1_boss"]
+[ext_resource type="PackedScene" uid="uid://b28fs6048njje" path="res://Entities/Horses/horse.tscn" id="2_boss"]
+[ext_resource type="PackedScene" uid="uid://e2c0uodm0jks" path="res://Entities/player.tscn" id="3_boss"]
+[ext_resource type="Texture2D" uid="uid://bk3ptmg1on5cx" path="res://backgrounds/racetrack.png" id="4_boss"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://misc_assets/Jewel 6.ttf" id="5_boss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
+size = Vector2(701.1, 773)
+
+[node name="BossRaceLevel" type="Node2D"]
+script = ExtResource("1_boss")
+horse_scene = ExtResource("2_boss")
+
+[node name="Player" parent="." instance=ExtResource("3_boss")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Win post" type="Area2D" parent="."]
+position = Vector2(626.9, 5.685)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Win post"]
+position = Vector2(340.55, -22.5)
+shape = SubResource("RectangleShape2D_boss")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Horses" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="HorseSpawns" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="HorseSpawns"]
+position = Vector2(-500, -115.525)
+
+[node name="Marker2D2" type="Marker2D" parent="HorseSpawns"]
+position = Vector2(-500, 52.695)
+
+[node name="Finish" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="Racetrack" type="Sprite2D" parent="."]
+z_index = -100
+texture = ExtResource("4_boss")
+
+[node name="BossInfoLabel" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -536.0
+offset_top = -282.0
+offset_right = -200.0
+offset_bottom = -230.0
+theme_override_fonts/font = ExtResource("5_boss")
+theme_override_font_sizes/font_size = 28
+text = "Boss"
+
+[node name="HorseWonLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -366.0
+offset_top = -151.0
+offset_right = 373.0
+offset_bottom = 156.0
+theme_override_fonts/normal_font = ExtResource("5_boss")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Horse Won!!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFunds" type="Label" parent="."]
+offset_left = -536.0
+offset_top = -282.0
+offset_right = -496.0
+offset_bottom = -259.0
+theme_override_fonts/font = ExtResource("5_boss")
+theme_override_font_sizes/font_size = 30
+text = "Player Funds"
+
+[connection signal="body_entered" from="Win post" to="." method="_on_win_post_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Finish" to="." method="_on_finish_timeout"]

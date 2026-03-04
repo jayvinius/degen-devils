@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jfrvjhn7gm2x"]
 
-[ext_resource type="Texture2D" uid="uid://s2xtylgdbcvo" path="res://icon.svg" id="1_nggmq"]
+[ext_resource type="Texture2D" uid="uid://s2xtylgdbcvo" path="res://misc_assets/icon.svg" id="1_nggmq"]
 [ext_resource type="Script" uid="uid://c11bgsnwb6xb3" path="res://Upgrades/throwing_object.gd" id="1_uhxgt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhxgt"]

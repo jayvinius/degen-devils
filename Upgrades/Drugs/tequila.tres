@@ -7,6 +7,9 @@
 
 [sub_resource type="Resource" id="Resource_10xrf"]
 script = ExtResource("2_kd8de")
+random_interval = true
+interval_min = 0.3
+interval_max = 2.0
 scene = ExtResource("2_10xrf")
 metadata/_custom_type_script = "uid://cr1p5u1e6mv4b"
 

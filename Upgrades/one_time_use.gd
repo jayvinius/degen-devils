@@ -4,7 +4,7 @@ class_name OneTimeUseEffect
 @export var id: StringName
 
 func apply(owner: Node) -> void:
-	EventBus.connect("finish_race", remove_self.bind(owner))
+	EventBus.finish_race.connect(remove_self.bind(owner), CONNECT_ONE_SHOT)
 
 func remove(owner: Node) -> void:
 	pass

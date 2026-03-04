@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bwj8u74siepq0" path="res://Levels/main_menu.gd" id="1_15p6s"]
 [ext_resource type="Texture2D" uid="uid://h2ttcyvx526f" path="res://Menus/DEGENDEVILSSCREEN.png" id="1_jy27m"]
-[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://Jewel 6.ttf" id="3_3es34"]
+[ext_resource type="FontFile" uid="uid://cw7cq0j8rj3n1" path="res://misc_assets/Jewel 6.ttf" id="3_3es34"]
 [ext_resource type="Texture2D" uid="uid://dxw2ogmo3k1ub" path="res://Menus/DEGENDEVILSLOGOTRANSPARENT.png" id="3_15p6s"]
-[ext_resource type="AudioStream" uid="uid://bbqwwlmckwg85" path="res://degen devil sound.wav" id="4_8md67"]
+[ext_resource type="AudioStream" uid="uid://bbqwwlmckwg85" path="res://sounds/degen devil sound.wav" id="4_8md67"]
 
 [sub_resource type="Animation" id="Animation_jy27m"]
 length = 0.001

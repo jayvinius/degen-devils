@@ -22,7 +22,10 @@ func _process(delta: float) -> void:
 	player_funds = Player.money
 
 func _on_button_pressed() -> void:
-	LevelManager.goto_scene("res://Levels/race_level.tscn")
+	if Player.current_boss() != null:
+		LevelManager.goto_scene("res://Levels/boss_race_level.tscn")
+	else:
+		LevelManager.goto_scene("res://Levels/bet_scene.tscn")
 
 func play_sound(name) -> void:
 	%AudioStreamPlayer2D.play()
