@@ -8,6 +8,7 @@ class_name HorseData
 @export var drugs: Array[DrugData] = []
 var bet_amount: float = 0.0
 var payout: float = 1.0
+var placings: Array[int] = []
 
 func get_effective_stat(stat_name: StringName) -> float:
 	var base: float = get(stat_name)

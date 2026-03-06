@@ -59,6 +59,9 @@ func get_base(stat: StringName) -> float:
 var health: int
 
 @export var player_horse: bool = false
+var horse_data: HorseData
+var bonus_placing: int = 1
+var place_payout: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = max_health
